@@ -41,3 +41,61 @@
     <script src="script.js"></script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minecraft Server Status</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Minecraft Server Status</h1>
+
+  <div id="server-status">
+    <p>Server is: <span id="status">Loading...</span></p>
+    <p>Players Online: <span id="players">Loading...</span></p>
+  </div>
+
+  <h2>Join our Discord</h2>
+  <p><a id="discord-link" href="#" target="_blank">Join Discord</a></p>
+  <p>Total Discord Members: <span id="discord-members">Loading...</span></p>
+
+  <script>
+    const serverIp = 'YOUR_SERVER_IP'; // Replace with your server IP or domain
+
+    // Fetch server status
+    fetch(`https://api.mcsrvstat.us/2/${serverIp}`)
+      .then(response => response.json())
+      .then(data => {
+        if (data.online) {
+          document.getElementById('status').innerText = 'Online';
+          document.getElementById('players').innerText = `${data.players.online} / ${data.players.max}`;
+        } else {
+          document.getElementById('status').innerText = 'Offline';
+          document.getElementById('players').innerText = '0 / 0';
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching server status:', error);
+        document.getElementById('status').innerText = 'Error';
+      });
+
+    // Add your Discord server link
+    const discordInviteLink = 'YOUR_DISCORD_INVITE_LINK'; // Replace with your Discord invite link
+    document.getElementById('discord-link').setAttribute('href', discordInviteLink);
+
+    // Fetch total Discord members
+    const discordServerId = 'YOUR_DISCORD_SERVER_ID'; // Replace with your Discord Server ID
+    fetch(`https://discord.com/api/guilds/${discordServerId}/widget.json`)
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('discord-members').innerText = data.members.length;
+      })
+      .catch(error => {
+        console.error('Error fetching Discord members:', error);
+        document.getElementById('discord-members').innerText = 'Error';
+      });
+  </script>
+</body>
+</html>
