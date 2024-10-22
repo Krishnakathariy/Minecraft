@@ -14,7 +14,7 @@
     <main>
         <section class="server-info">
             <h2>Server Information</h2>
-            <p>IP: <span id="server-ip">play.yourserver.com</span></p>
+            <p>IP: <span id="server-ip">play.pridemc.fun</span></p>
             <p>Game Modes: Survival, Lifesteal, Reincarnation</p>
             <p>Status: <span id="server-status">Checking...</span></p>
         </section>
@@ -62,7 +62,7 @@
   <p>Total Discord Members: <span id="discord-members">Loading...</span></p>
 
   <script>
-    const serverIp = 'YOUR_SERVER_IP'; // Replace with your server IP or domain
+    const serverIp = 'play.pridemc.fun'; // Replace with your server IP or domain
 
     // Fetch server status
     fetch(`https://api.mcsrvstat.us/2/${serverIp}`)
@@ -82,11 +82,11 @@
       });
 
     // Add your Discord server link
-    const discordInviteLink = 'YOUR_DISCORD_INVITE_LINK'; // Replace with your Discord invite link
+    const discordInviteLink = 'https://discord.gg/CNVSzwnKPK'; // Replace with your Discord invite link
     document.getElementById('discord-link').setAttribute('href', discordInviteLink);
 
     // Fetch total Discord members
-    const discordServerId = 'YOUR_DISCORD_SERVER_ID'; // Replace with your Discord Server ID
+    const discordServerId = '1166291675333808159'; // Replace with your Discord Server ID
     fetch(`https://discord.com/api/guilds/${discordServerId}/widget.json`)
       .then(response => response.json())
       .then(data => {
